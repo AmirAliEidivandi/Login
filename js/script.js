@@ -4,21 +4,18 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const password2 = document.getElementById("password2");
 
-// show input error message
-function showError(input, message) {
+const showError = (input, message) => {
     const formControl = input.parentElement;
     formControl.className = "form-control error";
     const small = formControl.querySelector("small");
     small.innerText = message;
 }
 
-// show success outline
-function showSuccess(input) {
+const showSuccess = (input) => {
     const formControl = input.parentElement;
     formControl.className = "form-control success";
 }
 
-// Check Email is valid
 function checkEmail(input) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(input.value.trim())) {
@@ -28,7 +25,6 @@ function checkEmail(input) {
     }
 }
 
-// Check required fields
 function checkRequired(inputArr) {
     inputArr.forEach((input) => {
         if (input.value.trim() === "") {
@@ -39,19 +35,16 @@ function checkRequired(inputArr) {
     });
 }
 
-// check passwords math
 function checkPasswordMath(input1, input2) {
     if (input1.value !== input2.value) {
         showError(input2, "Password do not math");
     }
 }
 
-// Get FieldName
 function getFieldName(input) {
     return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
 
-// Check input length
 function checkLength(input, min, max) {
     if (input.value.length < min) {
         showError(input, `${getFieldName(input)} must be at least ${min} characters`);
@@ -62,7 +55,6 @@ function checkLength(input, min, max) {
     }
 }
 
-// Event Listener
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
